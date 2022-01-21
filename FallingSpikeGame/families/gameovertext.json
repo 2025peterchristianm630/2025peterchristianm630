@@ -1,0 +1,13 @@
+{
+	"name": "gameovertext",
+	"plugin-id": "Text",
+	"sid": 461258506910499,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"texthome2",
+		"texthome",
+		"textmessage"
+	]
+}

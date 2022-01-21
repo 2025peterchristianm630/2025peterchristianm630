@@ -1,0 +1,735 @@
+{
+	"name": "Game Sheet",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "SpikeSpeed",
+			"type": "number",
+			"initialValue": "4.5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 205067595129598
+		},
+		{
+			"eventType": "variable",
+			"name": "Spikespawnmin",
+			"type": "number",
+			"initialValue": "0.6",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 599608073192465
+		},
+		{
+			"eventType": "variable",
+			"name": "Spikespawnmax",
+			"type": "number",
+			"initialValue": "0.95",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 585097724678009
+		},
+		{
+			"eventType": "variable",
+			"name": "Score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 872178117788602
+		},
+		{
+			"eventType": "variable",
+			"name": "Isalive",
+			"type": "number",
+			"initialValue": "1",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 181515678097670
+		},
+		{
+			"eventType": "variable",
+			"name": "PowerUpSpeed",
+			"type": "number",
+			"initialValue": "2.5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 981902044178022
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 721052105220527
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-animation",
+					"objectClass": "background",
+					"sid": 945598473567917
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "background",
+					"sid": 255978696619743,
+					"parameters": {
+						"frame-number": "floor(random(0,5))"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "gameoverhud",
+					"sid": 575158136943694,
+					"parameters": {
+						"opacity": "0"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "gameovertext",
+					"sid": 673091312457278,
+					"parameters": {
+						"opacity": "0"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 583405616719676,
+					"parameters": {
+						"variable": "Isalive",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 563802038312394,
+					"parameters": {
+						"variable": "Score",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 544628373720422
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 438997498253270
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 514143023786465,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "move-at-angle",
+					"objectClass": "spike",
+					"sid": 381758318504836,
+					"parameters": {
+						"angle": "90",
+						"distance": "SpikeSpeed"
+					}
+				},
+				{
+					"id": "move-at-angle",
+					"objectClass": "powerup",
+					"sid": 171840221214741,
+					"parameters": {
+						"angle": "90",
+						"distance": "PowerUpSpeed"
+					}
+				}
+			],
+			"sid": 877838482488511
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-in-touch",
+					"objectClass": "Touch",
+					"sid": 767293435479015
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "player",
+					"sid": 106110268627722,
+					"parameters": {
+						"x": "Touch.x"
+					}
+				}
+			],
+			"sid": 211579714727194
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 900206814430133,
+					"parameters": {
+						"interval-seconds": "random(Spikespawnmin,Spikespawnmax)"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 263656630243732,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 349985670698765,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-300,-60)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 602852915896567,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-300,-60)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 910546821840173,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-300,-60)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 204788298139838,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-300,-60)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 839252164278580,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "(random(0,480))",
+						"y": "random(-300,-60)",
+						"create-hierarchy": false
+					}
+				}
+			],
+			"sid": 161024370184601
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 341667695230985,
+					"parameters": {
+						"interval-seconds": "0.7"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 392688679884890,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 863425509257793,
+					"parameters": {
+						"variable": "Score",
+						"value": "1"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "textscore",
+					"sid": 356597576460932,
+					"parameters": {
+						"text": "\"Score: \" & Score"
+					}
+				}
+			],
+			"sid": 313920945847716
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "spike",
+					"sid": 587108776235418,
+					"parameters": {
+						"object": "player"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "player",
+					"sid": 632792517590493
+				},
+				{
+					"id": "destroy",
+					"objectClass": "spike",
+					"sid": 239284203362400
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "gameoverhud",
+					"sid": 952680527338069,
+					"parameters": {
+						"opacity": "100"
+					}
+				},
+				{
+					"id": "set-opacity",
+					"objectClass": "gameovertext",
+					"sid": 895911454834056,
+					"parameters": {
+						"opacity": "100"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 902031159210312,
+					"parameters": {
+						"variable": "Isalive",
+						"value": "0"
+					}
+				}
+			],
+			"sid": 443028297985180
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "spike",
+					"sid": 942783635404094,
+					"parameters": {
+						"object": "spikebreaker"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "spike",
+					"sid": 758435404866606
+				}
+			],
+			"sid": 477357566296227
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "player",
+					"sid": 209597498409730,
+					"parameters": {
+						"object": "powerup"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "powerup",
+					"sid": 899794124579368
+				},
+				{
+					"id": "set-width",
+					"objectClass": "player",
+					"sid": 664046680380864,
+					"parameters": {
+						"width": "random(29.970)"
+					}
+				}
+			],
+			"sid": 181693054426476,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 443556324659162,
+							"parameters": {
+								"first-value": "random(0,1)",
+								"comparison": 2,
+								"second-value": "0.7"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-width",
+							"objectClass": "player",
+							"sid": 513802514142421,
+							"parameters": {
+								"width": "20"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 111923963192029,
+							"parameters": {
+								"seconds": "3"
+							}
+						},
+						{
+							"id": "set-width",
+							"objectClass": "player",
+							"sid": 625582088811293,
+							"parameters": {
+								"width": "40"
+							}
+						}
+					],
+					"sid": 597030583411871
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 728718803306556
+						}
+					],
+					"actions": [
+						{
+							"id": "set-width",
+							"objectClass": "player",
+							"sid": 844918276790909,
+							"parameters": {
+								"width": "60"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 116032852879045,
+							"parameters": {
+								"seconds": "3"
+							}
+						},
+						{
+							"id": "set-width",
+							"objectClass": "player",
+							"sid": 499530114546933,
+							"parameters": {
+								"width": "40"
+							}
+						}
+					],
+					"sid": 672841219150072
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 690083135845525,
+							"parameters": {
+								"first-value": "random(0,1)",
+								"comparison": 4,
+								"second-value": "0.8"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "destroy",
+							"objectClass": "spike",
+							"sid": 340047988420210
+						}
+					],
+					"sid": 535295135992040
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 221618485957552,
+							"parameters": {
+								"first-value": "random(0,1)",
+								"comparison": 0,
+								"second-value": "0.1"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 614595917431779
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-collision-with-another-object",
+					"objectClass": "powerup",
+					"sid": 315118844017079,
+					"parameters": {
+						"object": "spikebreaker"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "powerup",
+					"sid": 233115867193285
+				}
+			],
+			"sid": 638035865336983
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 492139015690958,
+					"parameters": {
+						"object": "btnhome"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 121492723858303,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 878006166612249,
+					"parameters": {
+						"layout": "Title Layout"
+					}
+				}
+			],
+			"sid": 329939423533134
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-touched-object",
+					"objectClass": "Touch",
+					"sid": 291907715495088,
+					"parameters": {
+						"object": "btnplayagain"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 544808909804868,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "0"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 694229688100454
+				}
+			],
+			"sid": 684486468810599
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 250208241447422,
+					"parameters": {
+						"interval-seconds": "random(Spikespawnmin,Spikespawnmax)"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 951446033706074,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "1"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 111683586762673,
+					"parameters": {
+						"first-value": "Score",
+						"comparison": 4,
+						"second-value": "25"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 467458292634710,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-200,-60)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 400816491956232,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-200,-60)",
+						"create-hierarchy": false
+					}
+				},
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 279297298498197,
+					"parameters": {
+						"object-to-create": "spike",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "random(-200,-60)",
+						"create-hierarchy": false
+					}
+				}
+			],
+			"sid": 736780973163849
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 467853563120261,
+					"parameters": {
+						"interval-seconds": "(random(5,10))"
+					}
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 807959860109758,
+					"parameters": {
+						"first-value": "Isalive",
+						"comparison": 0,
+						"second-value": "1"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "create-object",
+					"objectClass": "System",
+					"sid": 767904359700871,
+					"parameters": {
+						"object-to-create": "powerup",
+						"layer": "2",
+						"x": "random(0,480)",
+						"y": "-60",
+						"create-hierarchy": false
+					}
+				}
+			],
+			"sid": 913216576003616
+		}
+	],
+	"sid": 728381041601270
+}

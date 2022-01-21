@@ -1,0 +1,13 @@
+{
+	"name": "gameoverhud",
+	"plugin-id": "Sprite",
+	"sid": 839760608769099,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"txtmessage",
+		"btnplayagain",
+		"btnhome"
+	]
+}

@@ -1,0 +1,81 @@
+{
+	"name": "Title Sheet",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 980067140532685
+				}
+			],
+			"actions": [
+				{
+					"id": "stop-animation",
+					"objectClass": "background",
+					"sid": 688501227595220
+				},
+				{
+					"id": "set-animation-frame",
+					"objectClass": "background",
+					"sid": 213531819301129,
+					"parameters": {
+						"frame-number": "floor(random(0,5))"
+					}
+				}
+			],
+			"sid": 896810218057646
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 463604631980042,
+					"parameters": {
+						"object": "btnplay"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 876322825814488,
+					"parameters": {
+						"layout": "Game Layout"
+					}
+				}
+			],
+			"sid": 487213559613608
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-touching-object",
+					"objectClass": "Touch",
+					"sid": 400529750937621,
+					"parameters": {
+						"object": "btnmoregames"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-url",
+					"objectClass": "Browser",
+					"sid": 709898186915363,
+					"parameters": {
+						"url": "\"https://google.com\"",
+						"target": "self"
+					}
+				}
+			],
+			"sid": 845404057710321
+		}
+	],
+	"sid": 484979106393048
+}
